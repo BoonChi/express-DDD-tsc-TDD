@@ -1,0 +1,5 @@
+interface IUserProps {
+  name: string;
+  email: string;
+  password: string;
+}
