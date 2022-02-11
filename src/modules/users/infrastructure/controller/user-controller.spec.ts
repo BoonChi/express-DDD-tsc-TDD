@@ -1,21 +1,51 @@
-import { expect } from "chai";
+import sinon from 'sinon';
+import { USER_TYPE } from '@core/container/service-identifier/';
+import { UserController } from './user-controller';
+import {
+  GetUserUseCase,
+  IGetUserUseCase,
+} from '@users/useCase/get-user-use-case';
+import { container } from '@core/container/inversify-container';
+import { HTTPStatusCode } from '@src/config/HTTPStatusCode.config';
 
-import { UserController } from "./user-controller";
-import { results } from "inversify-express-utils";
+describe('userController', () => {
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
+  let userController: any = null;
+  let getUserStub: sinon.SinonStubbedInstance<IGetUserUseCase>;
+  const mockUserArray = [
+    {
+      name: 'jest',
+      password: '123456',
+      email: 'jestAcc@gmail.com',
+    },
+  ];
+  beforeEach(async () => {
+    getUserStub = sinon.createStubInstance<IGetUserUseCase>(GetUserUseCase);
 
-describe("User controller", () => {
-  let controller: UserController;
+    /* eslint-disable  @typescript-eslint/no-explicit-any */
+    getUserStub.execute = sinon.stub(() => {
+      return mockUserArray;
+    }) as any;
 
-  beforeEach(() => {
-    controller = new UserController();
+    container
+      .rebind<IGetUserUseCase>(USER_TYPE.GetUserUseCase)
+      .toConstantValue(getUserStub);
+
+    userController = new UserController();
   });
+  describe('get user', () => {
+    it('should return array of users', async () => {
+      userController.getUserUseCase = getUserStub;
+      const response = await userController.get();
+      expect(response).toBeDefined();
+      expect(response.json).toEqual(mockUserArray);
+    });
 
-  describe("get", () => {
-    it("should have a status code of 403", async () => {
-      const response = await controller.get();
-
-      expect(response).to.be.an.instanceof(results.JsonResult);
-      expect(response.statusCode).to.equal(403);
+    it('should return statusCode', async () => {
+      userController.getUserUseCase = getUserStub;
+      const response = await userController.get();
+      expect(response).toBeDefined();
+      expect(response.statusCode).toEqual(HTTPStatusCode.SuccessOK);
     });
   });
 });

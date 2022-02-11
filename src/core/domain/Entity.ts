@@ -1,10 +1,10 @@
-import { UniqueEntityID } from "./UniqueEntityID"
+import { UniqueEntityID } from './UniqueEntityID';
 
 export class Entity<T> {
-  props: T
-  _id: UniqueEntityID
+  props: T;
+  _id: UniqueEntityID;
   constructor(props: T, id?: UniqueEntityID) {
-    this.props = props
-    this._id = id || new UniqueEntityID()
+    this.props = props;
+    this._id = id || new UniqueEntityID();
   }
 }

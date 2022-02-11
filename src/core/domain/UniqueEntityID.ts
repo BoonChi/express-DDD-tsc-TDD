@@ -1,5 +1,5 @@
-import { randomUUID } from "crypto";
+import { randomUUID } from 'crypto';
 
 export class UniqueEntityID {
-  id: string = randomUUID()
+  id: string = randomUUID();
 }
