@@ -1,16 +1,25 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 import { Container } from 'inversify';
 import { InversifyExpressServer } from 'inversify-express-utils';
-// import { CreateUserUseCase } from "@users/useCase/create-user-use-case";
-import { TYPE } from "@core/container/types/users"
+import {
+  CreateUserUseCase,
+  ICreateUserUseCase,
+} from '@users/useCase/create-user-use-case';
+import { USER_TYPE } from '@core/container/service-identifier/users';
+import {
+  GetUserUseCase,
+  IGetUserUseCase,
+} from '@users/useCase/get-user-use-case';
+import '@users/infrastructure/controller/user-controller';
 
 // set up container
-let container = new Container();
+const container = new Container();
 // set up bindings
-// container.bind<CreateUserUseCase>(TYPE.CreateUserUseCase).to(CreateUserUseCase);
-
+container
+  .bind<ICreateUserUseCase>(USER_TYPE.CreateUserUseCase)
+  .to(CreateUserUseCase);
+container.bind<IGetUserUseCase>(USER_TYPE.GetUserUseCase).to(GetUserUseCase);
 // create server
-let server = new InversifyExpressServer(container);
+const inversifyExpressServer = new InversifyExpressServer(container);
 
-export default server
-
+export { container, inversifyExpressServer };

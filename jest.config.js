@@ -1,11 +1,15 @@
 module.exports = {
-  moduleFileExtensions: ["ts", "js"],
-  rootDir: ".",
-  testRegex: ".spec.ts$",
-  transform: {
-    "^.+\\.ts$": "ts-jest",
+  moduleNameMapper: {
+    '@users/(.*)': '<rootDir>/src/modules/users/$1',
+    '@core/(.*)': '<rootDir>/src/core/$1',
+    '@src/(.*)': '<rootDir>/src/$1',
   },
-  coverageDirectory: "./coverage",
-  testEnvironment: "node",
-  setupFiles: ["./src/core/container/inversify-container.ts"],
+  moduleFileExtensions: ['ts', 'js'],
+  setupFiles: ['<rootDir>/src/core/container/inversify-container.ts'],
+  testRegex: '.spec.ts$',
+  transform: {
+    '^.+\\.ts$': 'ts-jest',
+  },
+  coverageDirectory: 'coverage',
+  testEnvironment: 'node',
 };
