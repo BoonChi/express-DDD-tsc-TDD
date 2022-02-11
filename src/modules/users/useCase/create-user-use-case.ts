@@ -1,12 +1,19 @@
+import { UseCase } from '@core/domain/i-use-case';
+import { injectable } from 'inversify';
+import { ICreateUserCommand } from './i-create-user-command';
+import UserModel from '@users/infrastructure/database/users.db.model';
 
-import { UseCase } from "@core/domain/i-use-case";
-import { ICreateUserCommand } from "./i-create-user-command";
+type ICreateUserResponse = string;
 
-type ICreateUserResponse = void
+export type ICreateUserUseCase = UseCase<
+  ICreateUserCommand,
+  ICreateUserResponse
+>;
 
-export class CreateUserUseCase implements UseCase<ICreateUserCommand, ICreateUserResponse> {
+@injectable()
+export class CreateUserUseCase implements ICreateUserUseCase {
   async execute(command: ICreateUserCommand): Promise<ICreateUserResponse> {
-
+    await UserModel.create({ ...command });
+    return 'SUCCESS';
   }
-
 }
