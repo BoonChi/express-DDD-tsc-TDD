@@ -1,4 +1,9 @@
-import type { Application, Response } from 'express';
+import type {
+  Application,
+  ErrorRequestHandler,
+  Request,
+  Response,
+} from 'express';
 import type { InversifyExpressServer } from 'inversify-express-utils';
 import bodyParser from 'body-parser';
 import Logger from '@core/logger';
@@ -12,7 +17,7 @@ class App {
     this.server = container;
   }
 
-  private build() {
+  private setup() {
     this.server.setConfig((app: Application) => {
       // add body parser
       app.use(
@@ -24,8 +29,8 @@ class App {
     });
 
     this.server.setErrorConfig(app => {
-      app.use((res: Response) => {
-        res.status(500).send('Something broke!');
+      app.use((error: ErrorRequestHandler, req: Request, res: Response) => {
+        res.status(404).send('Sorry, cant find that');
       });
     });
 
@@ -34,7 +39,7 @@ class App {
 
   public async start() {
     await mongooseServer.connect();
-    const builtApp = this.build();
+    const builtApp = this.setup();
     builtApp.listen(PORT, (): void => {
       Logger.info(`Connected successfully on port ${PORT}`);
     });

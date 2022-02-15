@@ -6,6 +6,7 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'js'],
   setupFiles: ['<rootDir>/src/core/container/inversify-container.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/utility/test/setupFile.ts'],
   testRegex: '.spec.ts$',
   transform: {
     '^.+\\.ts$': 'ts-jest',

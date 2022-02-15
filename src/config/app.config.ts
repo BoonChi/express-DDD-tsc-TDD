@@ -1,1 +1,3 @@
-export const PORT = process.env.PORT || 7090;
+const { NODE_PORT } = process.env;
+
+export const PORT = NODE_PORT;

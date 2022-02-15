@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import { USER_TYPE } from '@core/container/service-identifier/users';
+import { USER_TYPE } from '@core/container/service-identifier/';
 import { UserController } from './user-controller';
 import {
   GetUserUseCase,
@@ -14,7 +14,7 @@ describe('userController', () => {
   let getUserStub: sinon.SinonStubbedInstance<IGetUserUseCase>;
   const mockUserArray = [
     {
-      name: 'test',
+      name: 'jest',
       password: '123456',
       email: 'jestAcc@gmail.com',
     },
@@ -30,6 +30,7 @@ describe('userController', () => {
     container
       .rebind<IGetUserUseCase>(USER_TYPE.GetUserUseCase)
       .toConstantValue(getUserStub);
+
     userController = new UserController();
   });
   describe('get user', () => {

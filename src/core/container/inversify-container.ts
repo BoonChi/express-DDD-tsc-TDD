@@ -5,7 +5,7 @@ import {
   CreateUserUseCase,
   ICreateUserUseCase,
 } from '@users/useCase/create-user-use-case';
-import { USER_TYPE } from '@core/container/service-identifier/users';
+import { USER_TYPE } from '@core/container/service-identifier/';
 import {
   GetUserUseCase,
   IGetUserUseCase,
@@ -20,6 +20,8 @@ container
   .to(CreateUserUseCase);
 container.bind<IGetUserUseCase>(USER_TYPE.GetUserUseCase).to(GetUserUseCase);
 // create server
-const inversifyExpressServer = new InversifyExpressServer(container);
+const inversifyExpressServer = new InversifyExpressServer(container, null, {
+  rootPath: '/api/',
+});
 
 export { container, inversifyExpressServer };
