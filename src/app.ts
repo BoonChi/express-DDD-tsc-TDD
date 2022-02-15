@@ -1,4 +1,9 @@
-import { Application, ErrorRequestHandler, Request, Response } from 'express';
+import type {
+  Application,
+  ErrorRequestHandler,
+  Request,
+  Response,
+} from 'express';
 import type { InversifyExpressServer } from 'inversify-express-utils';
 import bodyParser from 'body-parser';
 import Logger from '@core/logger';
