@@ -13,4 +13,5 @@ module.exports = {
   },
   coverageDirectory: 'coverage',
   testEnvironment: 'node',
+  testRunner: 'jest-jasmine2',
 };
