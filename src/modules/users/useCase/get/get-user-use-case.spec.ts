@@ -1,5 +1,5 @@
 import { USER_TYPE } from '@core/container/service-identifier/';
-import { IGetUserUseCase } from '@users/useCase/get-user-use-case';
+import { IGetUserUseCase } from '@users/useCase/get/get-user-use-case';
 import { container } from '@core/container/inversify-container';
 
 describe('get user', () => {
