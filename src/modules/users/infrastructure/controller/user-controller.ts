@@ -7,8 +7,8 @@ import {
   httpPost,
 } from 'inversify-express-utils';
 import { USER_TYPE } from '@core/container/service-identifier/';
-import { IGetUserUseCase } from '@users/useCase/get-user-use-case';
-import { ICreateUserUseCase } from '@users/useCase/create-user-use-case';
+import { IGetUserUseCase } from '@users/useCase/get/get-user-use-case';
+import { ICreateUserUseCase } from '@users/useCase/create/create-user-use-case';
 import { HTTPStatusCode } from '@src/config/HTTPStatusCode.config';
 @controller('/user')
 export class UserController extends BaseHttpController {

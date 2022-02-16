@@ -1,9 +1,13 @@
 import { UseCase } from '@core/domain/i-use-case';
-import { injectable } from 'inversify';
+import { inject, injectable } from 'inversify';
 import { ICreateUserCommand } from './i-create-user-command';
 import UserModel from '@users/infrastructure/database/users.db.model';
+import { UserRepo } from '@users/repo/UserRepo';
+import { USER_TYPE } from '@core/container/service-identifier';
+import { IUserRepo } from '@users/repo/i-user-repo';
+import { User } from '@users/domain/User';
 
-type ICreateUserResponse = string;
+type ICreateUserResponse = User;
 
 export type ICreateUserUseCase = UseCase<
   ICreateUserCommand,
@@ -12,8 +16,10 @@ export type ICreateUserUseCase = UseCase<
 
 @injectable()
 export class CreateUserUseCase implements ICreateUserUseCase {
+  @inject(USER_TYPE.UserRepo)
+  private userRepo: IUserRepo
   async execute(command: ICreateUserCommand): Promise<ICreateUserResponse> {
-    await UserModel.create({ ...command });
-    return 'SUCCESS';
+    const user = new User(command)
+    return await this.userRepo.save(user)
   }
 }

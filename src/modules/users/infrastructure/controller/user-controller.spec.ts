@@ -4,7 +4,7 @@ import { UserController } from './user-controller';
 import {
   GetUserUseCase,
   IGetUserUseCase,
-} from '@users/useCase/get-user-use-case';
+} from '@users/useCase/get/get-user-use-case';
 import { container } from '@core/container/inversify-container';
 import { HTTPStatusCode } from '@src/config/HTTPStatusCode.config';
 
