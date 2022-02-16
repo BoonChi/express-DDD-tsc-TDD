@@ -6,8 +6,8 @@
     "dev": "NODE_ENV=development node-dev",
     "start": "node-dev -r tsconfig-paths/register -r ts-node/register src/index.ts",
     "build": "tsc --project ./",
-    "dev:test": "NODE_ENV=test jest --watch --detectOpenHandles",
-    "test": "NODE_ENV=test jest --detectOpenHandles",
+    "dev:test": "NODE_ENV=test jest --watch",
+    "test": "NODE_ENV=test jest",
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.{js,ts,tsx,json,md,mdx}\"",
     "lint": "eslint \"./**/*.ts\"",
     "format": "npm run lint && npm run prettier"

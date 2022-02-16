@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 import Logger from '@core/logger';
 import {
-  MongoMemoryServerOption,
   mongooseOptions,
 } from '@src/config/mongoose.config';
 
@@ -18,15 +16,6 @@ export class mongooseServer {
     } catch (error) {
       Logger.error(error, 'MongoDB connection error:');
     }
-  }
-
-  public static async connectMemoryServer() {
-    const mongoServer = await MongoMemoryServer.create();
-
-    // This will create an new instance of "MongoMemoryServer" and automatically start it
-    await MongoMemoryServer.create();
-
-    await mongoose.connect(mongoServer.getUri(), MongoMemoryServerOption);
   }
 
   public static setAutoReconnect() {
