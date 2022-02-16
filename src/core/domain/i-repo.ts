@@ -1,4 +1,4 @@
-interface Repo<T> {
-  delete(t: T): Promise<any>;
-  save(t: T): Promise<any>;
+export interface Repo<T> {
+  delete(t: T): Promise<T>;
+  save(t: T): Promise<T>;
 }

@@ -10,7 +10,7 @@ export type IGetUserUseCase = UseCase<null, IGetUserResponse>;
 @injectable()
 export class GetUserUseCase implements IGetUserUseCase {
   @inject(USER_TYPE.UserRepo)
-  private userRepo: IUserRepo
+  private userRepo: IUserRepo;
 
   async execute(): Promise<IGetUserResponse> {
     return await this.userRepo.findAllUser();

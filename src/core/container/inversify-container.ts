@@ -7,7 +7,7 @@ import { AddUserModule } from './add-user-module';
 // set up container
 const container = new Container();
 // set up bindings
-AddUserModule(container)
+AddUserModule(container);
 // create server
 const inversifyExpressServer = new InversifyExpressServer(container, null, {
   rootPath: '/api/',

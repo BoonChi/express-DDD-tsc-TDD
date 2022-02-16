@@ -3,7 +3,7 @@ const USER_TYPE = {
   GetUserUseCase: Symbol.for('GetUserUseCase'),
   UpdateUserUseCase: Symbol.for('UpdateUserUseCase'),
   DeleteUserUseCase: Symbol.for('DeleteUserUseCase'),
-  UserRepo: Symbol.for('UserRepo')
+  UserRepo: Symbol.for('UserRepo'),
 };
 
 const DATABASE_TYPE = {

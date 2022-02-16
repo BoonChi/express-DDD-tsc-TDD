@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 import Logger from '@core/logger';
-import {
-  mongooseOptions,
-} from '@src/config/mongoose.config';
+import { mongooseOptions } from '@src/config/mongoose.config';
 
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_PORT, DB_NAME } = process.env;
 
